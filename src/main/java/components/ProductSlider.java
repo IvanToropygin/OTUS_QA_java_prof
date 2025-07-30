@@ -1,6 +1,6 @@
 package components;
 
-import org.example.annotations.Component;
+import annotations.Component;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
