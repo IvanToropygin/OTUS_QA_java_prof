@@ -24,7 +24,7 @@ public class WebDriverFactory implements Provider<WebDriver> {
   @Override
   public WebDriver get() {
     WebDriver baseDriver = createBaseDriver();
-    baseDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    baseDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     return decorateWithListeners(baseDriver);
   }
 

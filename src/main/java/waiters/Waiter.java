@@ -12,13 +12,13 @@ import java.time.Duration;
 public class Waiter {
 
   private final WebDriver driver;
-  private final int waiterTimeout = Integer.parseInt(System.getProperty("waiter.timeout", "5"));
+  private final int waiterTimeout = Integer.parseInt(System.getProperty("waiter.timeout", "2"));
 
   public Waiter(WebDriver driver) {
     this.driver = driver;
   }
 
-  private boolean waitForCondition(ExpectedCondition<?> condition) {
+  public boolean waitForCondition(ExpectedCondition<?> condition) {
     try {
       new WebDriverWait(driver, Duration.ofSeconds(waiterTimeout)).until(condition);
       return true;
