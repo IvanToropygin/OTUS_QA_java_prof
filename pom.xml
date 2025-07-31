@@ -18,7 +18,7 @@
         <compiler.version>3.14.0</compiler.version>
         <surefire.version>3.5.3</surefire.version>
         <guice.version>7.0.0</guice.version>
-        <spotbugs.version>4.9.3</spotbugs.version>
+        <spotbugs.version>4.9.3.2</spotbugs.version>
         <checkstyle-plugin.version>3.6.0</checkstyle-plugin.version>
         <assertj.version>3.27.3</assertj.version>
         <slf4j.version>2.0.9</slf4j.version>
@@ -94,7 +94,7 @@
             </plugin>
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs</artifactId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
                 <version>${spotbugs.version}</version>
                 <configuration>
                     <effort>Max</effort>
