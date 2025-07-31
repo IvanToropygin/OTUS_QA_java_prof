@@ -25,6 +25,7 @@
         <slf4j.version>2.0.9</slf4j.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
         <guava.version>33.2.0-jre</guava.version>
+        <jsoup.version>1.17.2</jsoup.version>
         <base.url>https://otus.ru</base.url>
         <waiter.timeout>2</waiter.timeout>
         <browser.name>chrome</browser.name>
@@ -66,6 +67,11 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
