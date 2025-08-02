@@ -6,6 +6,7 @@ import factory.WebDriverFactory;
 import modules.ComponentGuiceModule;
 import modules.PageGuiceModule;
 import modules.PopupGuiceModule;
+import modules.UtilsModule;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -23,7 +24,8 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback {
     Injector injector = Guice.createInjector(
         new PageGuiceModule(driver),
         new ComponentGuiceModule(driver),
-        new PopupGuiceModule(driver)
+        new PopupGuiceModule(driver),
+        new UtilsModule()
     );
     context.getTestInstance().ifPresent(injector::injectMembers);
   }

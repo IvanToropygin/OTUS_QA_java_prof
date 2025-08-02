@@ -1,6 +1,7 @@
 package pages;
 
 import annotations.Path;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -45,7 +46,7 @@ public class CoursesPage extends AbsBasePage<CoursesPage> {
     return new CourseDetailsPage(this.driver);
   }
 
-  public CoursesPage closeBottomSaleBannerIfVisible(){
+  public CoursesPage closeBottomSaleBannerIfVisible() {
     try {
       if (bottomSaleBannerCloseBtn.isDisplayed()) {
         bottomSaleBannerCloseBtn.click();
@@ -57,7 +58,8 @@ public class CoursesPage extends AbsBasePage<CoursesPage> {
   }
 
   public List<Course> getCoursesWithExtremeDates() {
-    List<Course> allCourses = parseAllCourses().stream().distinct().toList();;
+    List<Course> allCourses = parseAllCourses().stream().distinct().toList();
+    ;
     if (allCourses.isEmpty()) {
       return Collections.emptyList();
     }
@@ -97,5 +99,12 @@ public class CoursesPage extends AbsBasePage<CoursesPage> {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM, yyyy", new Locale("ru"));
     return LocalDate.parse(datePart, formatter);
   }
-  public record Course(String name, LocalDate startDate) {}
+
+  public void verifyCheckboxState(String directionName) {
+    WebElement element = $(By.xpath(String.format("//label[contains(text(), '%s')]/..", directionName)));
+    Assertions.assertEquals("true", element.getAttribute("value"), "Чекбокс не отмечен или не найден");
+  }
+
+  public record Course(String name, LocalDate startDate) {
+  }
 }
