@@ -59,7 +59,6 @@ public class CoursesPage extends AbsBasePage<CoursesPage> {
 
   public List<Course> getCoursesWithExtremeDates() {
     List<Course> allCourses = parseAllCourses().stream().distinct().toList();
-    ;
     if (allCourses.isEmpty()) {
       return Collections.emptyList();
     }
