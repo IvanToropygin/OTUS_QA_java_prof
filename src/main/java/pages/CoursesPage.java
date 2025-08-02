@@ -102,7 +102,9 @@ public class CoursesPage extends AbsBasePage<CoursesPage> {
 
   public void verifyCheckboxState(String directionName) {
     WebElement element = $(By.xpath(String.format("//label[contains(text(), '%s')]/..", directionName)));
-    Assertions.assertEquals("true", element.getAttribute("value"), "Чекбокс не отмечен или не найден");
+    Assertions.assertEquals(
+        "true", element.getAttribute("value"),
+        String.format("Чекбокс у элемента: %s, - не отмечен или не найден", directionName));
   }
 
   public record Course(String name, LocalDate startDate) {
