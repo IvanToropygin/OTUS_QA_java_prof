@@ -17,12 +17,6 @@ public class PopupGuiceModule extends AbstractModule {
 
   @Provides
   @Singleton
-  public AuthPopup getAuthPopup() {
-    return new AuthPopup(driver);
-  }
-
-  @Provides
-  @Singleton
   public EducationMenuInHeaderPopup getEducationMenuInHeaderPopup() {
     return new EducationMenuInHeaderPopup(driver);
   }

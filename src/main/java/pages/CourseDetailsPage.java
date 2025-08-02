@@ -24,7 +24,7 @@ public class CourseDetailsPage extends AbsBasePage<CourseDetailsPage> {
     Assertions.assertEquals(courseName, $(By.xpath(titleLocator)).getText(), "Заголовок страницы не совпал");
   }
 
-  public void assertStartDate(LocalDate expectedStartDate) throws Exception {
+  public void assertStartDate(LocalDate expectedStartDate) {
     String pageSource = driver.getPageSource();
     Document doc = Jsoup.parse(pageSource);
 
@@ -35,16 +35,19 @@ public class CourseDetailsPage extends AbsBasePage<CourseDetailsPage> {
 
     String dateText = dateElement.text().trim();
 
-    DateTimeFormatter dayMonthFormatter = DateTimeFormatter.ofPattern("d MMMM", new Locale("ru"));
+    try {
+      DateTimeFormatter dayMonthFormatter = DateTimeFormatter.ofPattern("d MMMM", new Locale("ru"));
+      MonthDay actualMonthDay = MonthDay.parse(dateText, dayMonthFormatter);
+      MonthDay expectedMonthDay = MonthDay.from(expectedStartDate);
 
-    MonthDay actualMonthDay = MonthDay.parse(dateText, dayMonthFormatter);
-    MonthDay expectedMonthDay = MonthDay.from(expectedStartDate);
-
-    Assertions.assertEquals(expectedMonthDay, actualMonthDay,
-        "День и месяц начала курса не совпали");
+      Assertions.assertEquals(expectedMonthDay, actualMonthDay,
+          "День и месяц начала курса не совпали");
+    } catch (Exception e) {
+      throw new AssertionError("Ошибка при парсинге даты: " + dateText, e);
+    }
   }
 
-  public void backToCourseList(){
+  public void backToCourseList() {
     driver.navigate().back();
   }
 }

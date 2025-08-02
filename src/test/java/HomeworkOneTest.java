@@ -96,6 +96,5 @@ public class HomeworkOneTest {
     String randomDirection = randomSelector.getRandomElement(directionsOfStudy);
     educationMenuInHeaderPopup.moveMouseOnDirectionOfStudyAndClick(randomDirection)
         .verifyCheckboxState(randomDirection);
-
   }
 }

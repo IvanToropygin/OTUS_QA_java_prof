@@ -9,18 +9,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Waiter {
-
+public final class Waiter {
   private final WebDriver driver;
-  private final int waiterTimeout = Integer.parseInt(System.getProperty("waiter.timeout", "2"));
+  private final Duration timeout;
 
   public Waiter(WebDriver driver) {
+    this(driver, Integer.parseInt(System.getProperty("waiter.timeout", "2")));
+  }
+
+  public Waiter(WebDriver driver, int timeoutInSeconds) {
+    if (driver == null) {
+      throw new IllegalArgumentException("WebDriver cannot be null");
+    }
     this.driver = driver;
+    this.timeout = Duration.ofSeconds(timeoutInSeconds);
   }
 
   public boolean waitForCondition(ExpectedCondition<?> condition) {
     try {
-      new WebDriverWait(driver, Duration.ofSeconds(waiterTimeout)).until(condition);
+      new WebDriverWait(driver, timeout).until(condition);
       return true;
     } catch (TimeoutException ignored) {
       return false;
@@ -28,10 +35,10 @@ public class Waiter {
   }
 
   public boolean waitForElementVisible(By locator) {
-    return this.waitForCondition(ExpectedConditions.visibilityOfElementLocated(locator));
+    return waitForCondition(ExpectedConditions.visibilityOfElementLocated(locator));
   }
 
   public boolean waitForElementNotVisible(By locator) {
-    return this.waitForCondition(ExpectedConditions.invisibilityOfElementLocated(locator));
+    return waitForCondition(ExpectedConditions.invisibilityOfElementLocated(locator));
   }
 }

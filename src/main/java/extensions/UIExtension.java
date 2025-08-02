@@ -3,7 +3,6 @@ package extensions;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import factory.WebDriverFactory;
-import modules.ComponentGuiceModule;
 import modules.PageGuiceModule;
 import modules.PopupGuiceModule;
 import modules.UtilsModule;
@@ -23,7 +22,6 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback {
 
     Injector injector = Guice.createInjector(
         new PageGuiceModule(driver),
-        new ComponentGuiceModule(driver),
         new PopupGuiceModule(driver),
         new UtilsModule()
     );
