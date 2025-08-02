@@ -15,15 +15,17 @@
         <selenium.version>4.34.0</selenium.version>
         <webdrivermanager.version>6.1.0</webdrivermanager.version>
         <junit.version>5.13.2</junit.version>
+        <junit.params.version>5.13.4</junit.params.version>
         <compiler.version>3.14.0</compiler.version>
         <surefire.version>3.5.3</surefire.version>
         <guice.version>7.0.0</guice.version>
-        <spotbugs.version>4.9.3</spotbugs.version>
+        <spotbugs.version>4.9.3.2</spotbugs.version>
         <checkstyle-plugin.version>3.6.0</checkstyle-plugin.version>
         <assertj.version>3.27.3</assertj.version>
         <slf4j.version>2.0.9</slf4j.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
         <guava.version>33.2.0-jre</guava.version>
+        <jsoup.version>1.17.2</jsoup.version>
         <base.url>https://otus.ru</base.url>
         <waiter.timeout>2</waiter.timeout>
         <browser.name>chrome</browser.name>
@@ -46,6 +48,12 @@
             <version>${junit.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit.params.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>${guice.version}</version>
@@ -59,6 +67,11 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -94,7 +107,7 @@
             </plugin>
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs</artifactId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
                 <version>${spotbugs.version}</version>
                 <configuration>
                     <effort>Max</effort>
