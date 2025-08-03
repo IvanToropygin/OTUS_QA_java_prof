@@ -1,21 +1,23 @@
 package homework2.context;
 
+import io.cucumber.guice.ScenarioScoped;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestContext {
-
+@ScenarioScoped
+public class MyTestContext {
   private final Map<String, Object> context = new HashMap<>();
 
-  public void set(String key, Object value) {
+  public synchronized void set(String key, Object value) {
     context.put(key, value);
   }
 
-  public <T> T get(String key) {
+  public synchronized <T> T get(String key) {
     return (T) context.get(key);
   }
 
-  public void clear() {
+  public synchronized void clear() {
     context.clear();
   }
 }

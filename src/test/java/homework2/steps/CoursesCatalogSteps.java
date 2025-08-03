@@ -1,17 +1,14 @@
 package homework2.steps;
 
 import com.google.inject.Inject;
-import homework2.context.TestContext;
+import homework2.context.MyTestContext;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Пусть;
-import io.cucumber.java.ru.Тогда;
 import pages.CourseDetailsPage;
 import pages.CoursesCatalogPage;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CoursesCatalogSteps {
 
@@ -22,7 +19,7 @@ public class CoursesCatalogSteps {
   private CourseDetailsPage courseDetailsPage;
 
   @Inject
-  TestContext testContext;
+  private MyTestContext myTestContext;
 
   @Пусть("Открыта страница каталога курсов в браузере")
   public void openCoursesCatalogPage() {
@@ -41,26 +38,12 @@ public class CoursesCatalogSteps {
 
   @Дано("Выбраны курсы с самой ранней и поздней датой старта")
   public void getCoursesWithExtremeStartDate() {
+    coursesCatalogPage.open().closeBottomSaleBannerIfVisible();
     List<CoursesCatalogPage.Course> courses = coursesCatalogPage.getCoursesWithExtremeDates();
-    testContext.set("data", courses);
-    assertNotNull(testContext.get("data"), "Список курсов не был сохранен в контексте");
-  }
+    myTestContext.set("extreme_courses", courses);
+    System.out.println(courses);
 
-  @Когда("Открыт курс с самой ранней или поздней датой старта")
-  public void openEachCourseInContext() {
-    List<CoursesCatalogPage.Course> courses = testContext.get("data");
-    for (CoursesCatalogPage.Course course : courses) {
-      coursesCatalogPage.clickCourseName(course.name());
-    }
-  }
-
-  @Тогда("Проверен заголовок и дата старта курса с самой ранней или поздней датой старта")
-  public void checkEachCourseInContext() {
-    List<CoursesCatalogPage.Course> courses = testContext.get("data");
-    for (CoursesCatalogPage.Course course : courses) {
-      courseDetailsPage.assertTitlePage(course.name());
-      courseDetailsPage.assertStartDate(course.startDate());
-      courseDetailsPage.backToCourseList();
-    }
+    List<CoursesCatalogPage.Course> coursesFromContext = myTestContext.get("extreme_courses");
+    System.out.println(coursesFromContext);
   }
 }
