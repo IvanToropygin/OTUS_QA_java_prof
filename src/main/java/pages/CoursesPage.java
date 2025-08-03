@@ -21,7 +21,7 @@ public class CoursesPage extends AbsBasePage<CoursesPage> {
   @FindBy(xpath = "//*[contains(@href,'lesson')]")
   private List<WebElement> coursesCards;
 
-  @FindBy(xpath = "//*[contains(@href,'lesson')][starts-with(@class, 'sc-zz')]//h6[starts-with(@class, 'sc')]//*[starts-with(@class, 'sc')]")
+  @FindBy(xpath = "//*[contains(@href,'lesson')]//h6/div")
   private List<WebElement> coursesNames;
 
   @FindBy(xpath = "//button[.='Показать еще 20']")
@@ -79,7 +79,7 @@ public class CoursesPage extends AbsBasePage<CoursesPage> {
     return coursesCards.stream()
         .map(card -> {
           try {
-            String name = card.findElement(By.xpath(".//h6[starts-with(@class,'sc')]//*[starts-with(@class,'sc')]"))
+            String name = card.findElement(By.xpath(".//h6/div"))
                 .getText();
             String dateText = card.findElement(By.xpath(".//*[contains(text(), 'месяцев')]"))
                 .getText();

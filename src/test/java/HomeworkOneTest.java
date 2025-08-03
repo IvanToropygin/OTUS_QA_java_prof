@@ -29,7 +29,6 @@ public class HomeworkOneTest {
   @Inject
   RandomSelector randomSelector;
 
-
   /**
    * Сценарий 1.
    * Открыть страницу каталога курсов https://otus.ru/catalog/courses
@@ -68,8 +67,6 @@ public class HomeworkOneTest {
         .open()
         .closeBottomSaleBannerIfVisible();
     List<CoursesPage.Course> courses = coursesPage.getCoursesWithExtremeDates();
-    System.out.println("courses: " + courses.size());
-    System.out.println(courses);
 
     for (CoursesPage.Course course : courses) {
       CourseDetailsPage courseDetails = coursesPage.clickCourseName(course.name());
