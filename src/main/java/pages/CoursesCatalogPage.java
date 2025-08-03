@@ -22,7 +22,7 @@ public class CoursesCatalogPage extends AbsBasePage<CoursesCatalogPage> {
   @FindBy(xpath = "//*[contains(@href,'lesson')]")
   private List<WebElement> coursesCards;
 
-  @FindBy(xpath = "//*[contains(@href,'lesson')]//h6[starts-with(@class, 'sc')]//div")
+  @FindBy(xpath = "//*[contains(@href,'lesson')]//h6//div")
   private List<WebElement> coursesNames;
 
   @FindBy(xpath = "//button[.='Показать еще 20']")
