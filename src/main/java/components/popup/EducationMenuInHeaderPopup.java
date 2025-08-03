@@ -1,5 +1,6 @@
 package components.popup;
 
+import com.google.inject.Inject;
 import commons.AbsCommon;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -20,6 +21,7 @@ public class EducationMenuInHeaderPopup extends AbsCommon implements IPopup<Educ
   @FindBy(xpath = "//p[text()='Все курсы']/following-sibling::div/a")
   List<WebElement> directionsOfStudy;
 
+  @Inject
   public EducationMenuInHeaderPopup(GuiceScoped guiceScoped) {
     super(guiceScoped);
   }

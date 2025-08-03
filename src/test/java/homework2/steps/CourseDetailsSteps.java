@@ -1,7 +1,7 @@
 package homework2.steps;
 
 import com.google.inject.Inject;
-import homework2.context.MyTestContext;
+import homework2.context.TestContext;
 import io.cucumber.java.ru.Тогда;
 import pages.CourseDetailsPage;
 import pages.CoursesCatalogPage;
@@ -17,7 +17,7 @@ public class CourseDetailsSteps {
   private CoursesCatalogPage coursesCatalogPage;
 
   @Inject
-  private MyTestContext myTestContext;
+  private TestContext testContext;
 
   @Тогда("Открыта страница информации о курсе (.*)$")
   public void openCoursesCatalogPage(String courseName) {
@@ -26,8 +26,7 @@ public class CourseDetailsSteps {
 
   @Тогда("Открыть и проверить каждый курс из списка")
   public void openAndVerifyEachCourse() {
-    List<CoursesCatalogPage.Course> courses = myTestContext.get("extreme_courses");
-    System.out.println(courses);
+    List<CoursesCatalogPage.Course> courses = testContext.get("extreme_courses");
 
     for (CoursesCatalogPage.Course course : courses) {
       try {

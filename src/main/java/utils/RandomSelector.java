@@ -1,12 +1,12 @@
 package utils;
 
 
-import com.google.inject.Singleton;
+import io.cucumber.guice.ScenarioScoped;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-@Singleton
+@ScenarioScoped
 public class RandomSelector {
 
   public String getRandomElement(List<String> list) {

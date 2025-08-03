@@ -1,10 +1,11 @@
 package homework2.steps;
 
 import com.google.inject.Inject;
-import homework2.context.MyTestContext;
+import homework2.context.TestContext;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Пусть;
+import io.cucumber.java.ru.Тогда;
 import pages.CourseDetailsPage;
 import pages.CoursesCatalogPage;
 
@@ -19,7 +20,7 @@ public class CoursesCatalogSteps {
   private CourseDetailsPage courseDetailsPage;
 
   @Inject
-  private MyTestContext myTestContext;
+  private TestContext testContext;
 
   @Пусть("Открыта страница каталога курсов в браузере")
   public void openCoursesCatalogPage() {
@@ -40,10 +41,12 @@ public class CoursesCatalogSteps {
   public void getCoursesWithExtremeStartDate() {
     coursesCatalogPage.open().closeBottomSaleBannerIfVisible();
     List<CoursesCatalogPage.Course> courses = coursesCatalogPage.getCoursesWithExtremeDates();
-    myTestContext.set("extreme_courses", courses);
-    System.out.println(courses);
+    testContext.set("extreme_courses", courses);
+  }
 
-    List<CoursesCatalogPage.Course> coursesFromContext = myTestContext.get("extreme_courses");
-    System.out.println(coursesFromContext);
+  @Тогда("Проверить Чекбокс в боковом меню у выбранного Направления")
+  public void verifyDirectionCheckbox() {
+    String direction = testContext.get("randomDirection");
+    coursesCatalogPage.verifyCheckboxState(direction);
   }
 }
