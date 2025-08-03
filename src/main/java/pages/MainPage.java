@@ -1,10 +1,11 @@
 package pages;
 
 import annotations.Path;
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import scoped.GuiceScoped;
 
 @Path("/")
 public class MainPage extends AbsBasePage<MainPage> {
@@ -15,8 +16,9 @@ public class MainPage extends AbsBasePage<MainPage> {
   //динамический локатор
   private String headerEvent = "//*[@class='header']";
 
-  public MainPage(WebDriver driver) {
-    super(driver);
+  @Inject
+  public MainPage(GuiceScoped guiceScoped) {
+    super(guiceScoped);
   }
 
   public MainPage clickHeaderEvent() {

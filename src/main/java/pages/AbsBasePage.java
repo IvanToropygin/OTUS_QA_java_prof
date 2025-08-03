@@ -1,14 +1,16 @@
 package pages;
 
 import annotations.Path;
+import com.google.inject.Inject;
 import commons.AbsCommon;
 import exceptions.PathNotFoundException;
-import org.openqa.selenium.WebDriver;
+import scoped.GuiceScoped;
 
 public abstract class AbsBasePage<T> extends AbsCommon {
 
-  public AbsBasePage(WebDriver driver) {
-    super(driver);
+  @Inject
+  public AbsBasePage(GuiceScoped guiceScoped) {
+    super(guiceScoped);
   }
 
   private String getPagePath() {

@@ -3,10 +3,10 @@ package components.popup;
 import commons.AbsCommon;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.CoursesPage;
+import pages.CoursesCatalogPage;
+import scoped.GuiceScoped;
 
 import java.util.List;
 
@@ -20,8 +20,8 @@ public class EducationMenuInHeaderPopup extends AbsCommon implements IPopup<Educ
   @FindBy(xpath = "//p[text()='Все курсы']/following-sibling::div/a")
   List<WebElement> directionsOfStudy;
 
-  public EducationMenuInHeaderPopup(WebDriver driver) {
-    super(driver);
+  public EducationMenuInHeaderPopup(GuiceScoped guiceScoped) {
+    super(guiceScoped);
   }
 
   @Override
@@ -62,7 +62,7 @@ public class EducationMenuInHeaderPopup extends AbsCommon implements IPopup<Educ
     return directions;
   }
 
-  public CoursesPage moveMouseOnDirectionOfStudyAndClick(String directionName) {
+  public CoursesCatalogPage moveMouseOnDirectionOfStudyAndClick(String directionName) {
     WebElement direction = directionsOfStudy.stream()
         .filter(it -> it.getText().trim().contains(directionName))
         .findFirst()
@@ -70,6 +70,6 @@ public class EducationMenuInHeaderPopup extends AbsCommon implements IPopup<Educ
 
     actions.moveToElement(direction).build().perform();
     direction.click();
-    return new CoursesPage(this.driver);
+    return new CoursesCatalogPage(this.guiceScoped);
   }
 }

@@ -3,7 +3,7 @@ package components.popup;
 
 import commons.AbsCommon;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import scoped.GuiceScoped;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -11,8 +11,8 @@ public class AuthPopup extends AbsCommon implements IPopup<AuthPopup> {
 
   private final By popupBy = By.cssSelector(".auth");
 
-  public AuthPopup(WebDriver driver) {
-    super(driver);
+  public AuthPopup(GuiceScoped guiceScoped) {
+    super(guiceScoped);
   }
 
   @Override

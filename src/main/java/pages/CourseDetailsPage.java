@@ -1,11 +1,12 @@
 package pages;
 
+import com.google.inject.Inject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import scoped.GuiceScoped;
 
 import java.time.LocalDate;
 import java.time.MonthDay;
@@ -14,8 +15,9 @@ import java.util.Locale;
 
 public class CourseDetailsPage extends AbsBasePage<CourseDetailsPage> {
 
-  public CourseDetailsPage(WebDriver driver) {
-    super(driver);
+  @Inject
+  public CourseDetailsPage(GuiceScoped guiceScoped) {
+    super(guiceScoped);
   }
 
   public void assertTitlePage(String courseName) {

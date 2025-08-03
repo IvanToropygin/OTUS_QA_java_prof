@@ -26,6 +26,8 @@
         <commons-lang3.version>3.18.0</commons-lang3.version>
         <guava.version>33.2.0-jre</guava.version>
         <jsoup.version>1.17.2</jsoup.version>
+        <cucumber.version>7.2.3</cucumber.version>
+        <cucumber-guice.version>5.5.0</cucumber-guice.version>
         <base.url>https://otus.ru</base.url>
         <waiter.timeout>2</waiter.timeout>
         <browser.name>chrome</browser.name>
@@ -82,6 +84,21 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-guice</artifactId>
+            <version>${cucumber-guice.version}</version>
         </dependency>
     </dependencies>
     <build>
