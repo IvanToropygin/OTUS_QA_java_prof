@@ -1,4 +1,4 @@
-package homework2.context;
+package homework.context;
 
 import io.cucumber.guice.ScenarioScoped;
 

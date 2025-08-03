@@ -1,4 +1,4 @@
-package homework2;
+package homework;
 
 import io.cucumber.junit.platform.engine.Cucumber;
 

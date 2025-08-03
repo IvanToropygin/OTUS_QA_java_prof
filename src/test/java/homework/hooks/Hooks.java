@@ -1,4 +1,4 @@
-package homework2.hooks;
+package homework.hooks;
 
 import com.google.inject.Inject;
 import factory.WebDriverFactory;

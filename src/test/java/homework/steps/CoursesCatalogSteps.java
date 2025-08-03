@@ -1,7 +1,7 @@
-package homework2.steps;
+package homework.steps;
 
 import com.google.inject.Inject;
-import homework2.context.TestContext;
+import homework.context.TestContext;
 import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Пусть;

@@ -1,8 +1,8 @@
-package homework2.steps;
+package homework.steps;
 
 import com.google.inject.Inject;
 import components.popup.EducationMenuInHeaderPopup;
-import homework2.context.TestContext;
+import homework.context.TestContext;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Пусть;
 import io.cucumber.java.ru.Тогда;
