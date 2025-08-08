@@ -15,7 +15,6 @@
         <selenium.version>4.34.0</selenium.version>
         <webdrivermanager.version>6.1.0</webdrivermanager.version>
         <junit.version>5.13.2</junit.version>
-        <junit.params.version>5.13.4</junit.params.version>
         <compiler.version>3.14.0</compiler.version>
         <surefire.version>3.5.3</surefire.version>
         <guice.version>7.0.0</guice.version>
@@ -52,8 +51,13 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit.params.version}</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
