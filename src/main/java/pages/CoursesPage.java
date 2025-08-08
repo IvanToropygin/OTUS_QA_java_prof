@@ -63,15 +63,23 @@ public class CoursesPage extends AbsBasePage<CoursesPage> {
       return Collections.emptyList();
     }
 
-    List<LocalDate> dates = allCourses.stream()
+    LocalDate[] extremes = allCourses.stream()
         .map(Course::startDate)
-        .toList();
-
-    LocalDate minDate = Collections.min(dates);
-    LocalDate maxDate = Collections.max(dates);
+        .reduce(
+            new LocalDate[]{null, null},
+            (acc, date) -> {
+              if (acc[0] == null || date.isBefore(acc[0])) acc[0] = date;
+              if (acc[1] == null || date.isAfter(acc[1])) acc[1] = date;
+              return acc;
+            },
+            (a, b) -> new LocalDate[]{
+                a[0] != null && (b[0] == null || a[0].isBefore(b[0])) ? a[0] : b[0],
+                a[1] != null && (b[1] == null || a[1].isAfter(b[1])) ? a[1] : b[1]
+            }
+        );
 
     return allCourses.stream()
-        .filter(c -> c.startDate().equals(minDate) || c.startDate().equals(maxDate))
+        .filter(c -> c.startDate().equals(extremes[0]) || c.startDate().equals(extremes[1]))
         .toList();
   }
 
